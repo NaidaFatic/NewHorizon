@@ -1,0 +1,351 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: sans-serif;
+}
+
+#nav-bar{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar{
+    background-image: linear-gradient(to right, #a517ba, #5f1782);
+    padding: 0 !important;
+}
+
+.navbar-brand img{
+    height: 40px;
+    padding-left: 20px;
+}
+
+.navbar-nav li{
+    padding: 0 10px;
+}
+
+.navbar-nav li .main{
+    color: #fff !important;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.navbar-nav li .sub{
+    color: #fff !important;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.navbar-nav li .sub:hover{
+    background-color: aliceblue;
+    background-image: none;
+    color: black !important;
+}
+
+.fa-bars{
+    color: #fff;
+    font-size: 30px !important;
+}
+
+
+#banner{
+    background-image: linear-gradient(to right, #a517ba, #5f1782);
+    color: #fff;
+    padding-top: 10%;
+}
+
+.main-title{
+    font-size: 40px;
+    font-weight: 700;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.slog{
+    text-align: center
+}
+
+.bottom-img{
+    width: 100%;
+}
+
+#services{
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+#services .container h2{
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.title::before{
+    content: '';
+    background: #7b1798;
+    height: 5px;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    transform: translateY(63px);
+}
+
+#services .container .row{
+    padding: 10px;
+}
+
+.fa-laptop, .fa-book, .fa-phone{
+    font-size: 100px !important;
+    background: -webkit-linear-gradient(#a517ba, #5f1782);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.signin-body {
+    background-color: #9370DB;
+}
+
+body.signin-body {
+    background-image: linear-gradient(to right, #a517ba, #5f1782);
+
+
+}
+.container.signin-container{
+    margin-top: 10%
+}
+.card.signin-card {
+    padding:40px 0px 20px;
+    background-color: rgb(255, 248, 220);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
+}
+.signin-img{
+    padding: 0px 0px 0px;
+    height: 60%;
+    margin: auto;
+    display: block;
+    width: 70%;
+}
+.sigin-form{
+    max-width:350px;
+    margin: auto;
+}
+
+
+#services .btn-primary{
+    box-shadow: none;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, #a517ba, #5f1782);
+}
+
+#about{
+    padding-bottom: 50px;
+    padding-top: 25px;
+    background: #fdf0ff;
+}
+
+#about .container .row .col-md-6 img{
+    text-align: center;
+}
+
+#about ul{
+    margin-left: 20px;
+}
+
+
+#about .title2{
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+#about .team{
+    text-align: center;
+    padding-top: 15px;
+}
+
+.team img{
+    width: 100%;
+}
+
+
+#social{
+    padding: 100px 0px;
+    text-align: center;
+    background-color: white
+
+}
+
+#social .container .title2{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#social .container img{
+    padding-right: 25px;
+
+}
+
+.footer-img{
+    width: 100%;
+}
+#footer{
+    background-image: linear-gradient(to right, #a517ba, #5f1782);
+    color: #fff;
+}
+
+#footer .container{
+    background-image: linear-gradient(to right, #a517ba, #5f1782);
+    color: #fff;
+}
+
+.con{
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.con .form-control{
+    box-shadow: none !important;
+    border: none;
+    border-radius: 0;
+    margin-top: 10px;
+    max-width: 260px;
+}
+
+.con .btn-primary{
+    box-shadow: none !important;
+    border: none;
+    border-radius: 0;
+    margin-top: 30px;
+    background-color: black;
+}
+
+hr{
+    background-color: #fff;
+}
+
+.copyright{
+    text-align: center;
+    padding-bottom: 20px;
+    margin-bottom: 0px;
+}
+.button {
+    border: none;
+    background-image: linear-gradient(to right, #a517ba, #5f1782);
+    padding: 12px 48px;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 40%;
+    color: white;
+    border-radius: 4px;
+
+}
+
+.dropdown-menu{
+    background-image: linear-gradient(to right, #a517ba, #5f1782);
+    width:inherit;
+
+}
+
+
+#selection{
+    padding-top: 50px;
+}
+
+#selection h1{
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.seemore{
+    font-size: 15px;
+    text-decoration: none;
+    color: #999;
+}
+
+.placeholder{
+    width: 100%;
+}
+li a:hover {
+    background-color: #4a0e47;
+}
+
+
+.btn:hover {
+    width: 150px;
+}
+
+#tut{
+    text-align: center;
+    padding-top: 25px;
+}
+
+#tut img{
+    padding-bottom: 15px;
+    width: 100%;
+}
+
+#tut .tutp{
+    font-size: 22px;
+}
+.navbar-home {
+    background-color: transparent;
+    text-decoration: none;
+    color: #fff !important;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+.navbar-home:hover {
+    background-color:#4a0e47 ;
+    text-decoration: none;
+    color: #fff !important;
+    text-transform: uppercase;
+    font-weight: 800;
+
+}
+.img{
+     border-width: 5px;
+    border-color: black;
+    border-style: solid;
+
+}
+
+
+.img0{
+    max-width: 70%;
+    height: auto;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+.buttonSignUp{
+  border: none;
+  background-image: linear-gradient(to right, #a517ba, #5f1782);
+  padding: 12px 48px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 30%;
+  color: white;
+  border-radius: 4px;
+}
+
+.haveaccount{
+    text-align: center;
+}
