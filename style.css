@@ -54,6 +54,9 @@ body{
     font-size: 30px !important;
 }
 
+.navbar-toggler{
+    outline: none !important;
+}
 
 #banner{
     background-image: linear-gradient(to right, #a517ba, #5f1782);
@@ -139,7 +142,6 @@ body.signin-body {
     max-width:350px;
     margin: auto;
 }
-
 
 #services .btn-primary{
     box-shadow: none;
