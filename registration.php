@@ -1,61 +1,55 @@
+
 <?php
 
 session_start();
 
+
 //conncection
 
-$db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123")
-or die('Connexion impossible : ' . pg_last_error());
+$db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
 
 //registration of a user
-if(isset($_GET['signup'])){
 
-  $name=mysqli_real_escape_string($db_connection, $_POST['name']);
-  $surname=mysqli_real_escape_string($db_connection, $_POST['surname']);
-  $date=mysqli_real_escape_string($db_connection, $_POST['date']);
-  $email=mysqli_real_escape_string($db_connection, $_POST['email']);
-  $pass=mysqli_real_escape_string($db_connection, $_POST['password']);
-  $passTest=mysqli_real_escape_string($db_connection, $_POST['passwordTest']);
 
+  $name=$_POST['name'];
+  $surname=$_POST['surname'];
+  $date= $_POST['date'];
+  $email=$_POST['email'];
+  $broj=$_POST['number'];
+  $pass= $_POST['password'];
+  $passTest=$_POST['passwordTest'];
   //inpuut into database
 
   //chech if there is someone with same email
 
-  $userQuery="SELECT * FROM korisnici WHERE e_mail=$email LIMIT 1";
-  $userResult=mysqli_query($db_connection,$user);
-  $user=mysqli_fetch_assoc($userResult);
+  $results=pg_prepare ($db_connection,"my_query",'SELECT * FROM korisnici WHERE e_mail=$1 LIMIT 1');
+  $userResult=pg_execute($db_connection,"my_query",array($email));
 
 
-  if(empty($name) || empty($surname) || empty($date) || empty($email) || empty($pass)){
-      die("It can't be empty");
+  if($pass!=$passTest){
+
+    echo '<script>
+    alert("Passwords have to be same!");
+    window.location.href = "REGISTRATION.html";
+    </script>';
+    die();
     }
-  else if($pass!=$pass){
-      echo "Passwords have to be same!";
-    }
-  else if($userResult && $userResult["email"]===$email){
-    echo "There is account with same email !";
+  if(pg_num_rows($userResult)>=1){
+    echo '<script>
+    alert("Email is already used!");
+    window.location.href = "REGISTRATION.html";
+    </script>';
+    die();
   }
-  else {
+
     $password=md5($pass); //encrypt password
 
-    $queryInsert="INSERT INTO korisnici(ime, prezime, datum_rodjanja, e_mail, broj_telefona, sifra, uloga)
-    values ('$name','$surname','$date','$email','$password','FALSE')";
-
-    mysqli_query($db_connection,$queryInsert);//pass to db
+    $ers=pg_prepare($db_connection,"query",'INSERT INTO korisnici(ime, prezime, datum_rodjanja, e_mail, broj_telefona, sifra, uloga)
+    values ($1, $2, $3, $4, $5,$6,$7)');
+    $ers=pg_execute($db_connection,"query",array( $name,$surname,$date,$email,$broj,$password,'FALSE'));
     $_SESSION['name']=$name;
     $_SESSION['success']="You are logged in!";
 
-    header("location: concept.html");
-
-
-
-
-  }
-
-
-}
-
-
-
+    header("location: concept.php");
 
  ?>

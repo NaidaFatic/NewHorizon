@@ -1,34 +1,52 @@
 <?php
 
+
 session_start();
 
 //conncection
 
-$db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123")
-or die('Connexion impossible : ' . pg_last_error());
+$db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
 
 //registration of a user
 
-  $email=mysqli_real_escape_string($db_connection, $_POST['email']);
-  $pass=mysqli_real_escape_string($db_connection, $_POST['password']);
+  $email=$_POST['email'];
+  $pass= $_POST['password'];
 
-  if(empty($emal) || empty($pass)){
-    echo "Can't be empty!";
-  }
-  else{
     $password=md5($pass);
-    $queryCheck="SELECT * FROM korisnici WHERE e_mail='$email' AND sifra='$pass'";
-    $results=mysqli_query($db_connection,$queryCheck);
+    $results=pg_prepare ($db_connection,"my_query",'SELECT * FROM korisnici WHERE e_mail=$1 AND sifra=$2');//prepared mysqli_stm
+    $results=pg_execute($db_connection,"my_query",array($email,$password));
+    $name=pg_query ($db_connection,"SELECT ime FROM korisnici WHERE e_mail='$email' AND sifra='$password'");
+    $name=pg_fetch_result($name,0,0);
+    $uloga=pg_query ($db_connection,"SELECT uloga FROM korisnici WHERE e_mail='$email' AND sifra='$password'");
+    $uloga=pg_fetch_result($uloga,0,0);
+    
 
-    if(mysqli_num_rows($results)){
+
+    if(pg_num_rows($results)==1 ){
       $_SESSION['email']=$email;
       $_SESSION['success']="Log in successfully!";
-      header('location: concept.html');
+      if($uloga==True){
+          header("Location: adminpage.php");
+      }
+      else{
+        header("Location: concept.php");
+      }
+
     }
     else{
-      echo "Password or email is not correct!";
+      echo '<script>
+      alert("Passwords or email is NOT correct!");
+      window.location.href = "LOG IN.html";
+      </script>';
+      die();
     }
-  }
+
+
+
+    $_SESSION['name']=$name;
+    //sql query select ULOGA column
+    //if ULOGA == True header("page_for_admin_to_edit.hmtl")
+
 
 
 ?>
