@@ -19,16 +19,18 @@ $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres 
     $name=pg_fetch_result($name,0,0);
     $uloga=pg_query ($db_connection,"SELECT uloga FROM korisnici WHERE e_mail='$email' AND sifra='$password'");
     $uloga=pg_fetch_result($uloga,0,0);
-    
+
 
 
     if(pg_num_rows($results)==1 ){
       $_SESSION['email']=$email;
       $_SESSION['success']="Log in successfully!";
       if($uloga==True){
+        $_SESSION['name']="Admin $name";
           header("Location: adminpage.php");
       }
       else{
+        $_SESSION['name']=$name;
         header("Location: concept.php");
       }
 
@@ -41,11 +43,6 @@ $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres 
       die();
     }
 
-
-
-    $_SESSION['name']=$name;
-    //sql query select ULOGA column
-    //if ULOGA == True header("page_for_admin_to_edit.hmtl")
 
 
 

@@ -2,8 +2,7 @@
 <html>
     <head>
 
-
-        <title>Courses</title>
+        <title>Basics of Internet</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="style.css" type="text/css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -11,23 +10,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="shortcut icon" href="images/logotip2.png">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://cdn.tiny.cloud/1/9bfmbnpzkgkaiedqh73xbydrzqpalxno3pkoj1gay6fpz49x/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-        <script>tinymce.init({
-  selector: 'textarea',  // change this value according to your HTML
-  paste_data_images: true,
-  plugins: 'paste',
-  menubar: 'edit',
-  setup: function (editor) {
-    editor.on('click', function () {
-      console.log('Editor was clicked');
-    });
-  }
-});      </script>
-
-
-      </head>
+    </head>
 
     <body>
 
@@ -108,7 +91,6 @@
 
                                     echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
 
-
                                   }}
 
                                   $id=$id+1;
@@ -156,49 +138,25 @@
                 </div>
             </nav>
         </section>
+        <!--------------------tutorial------------------------------>
 
-        <!-------selection-------------------------------->
+          <section>
+          <?php
+          $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
 
-        <section id="selection">
-          <h1>CREATE A COURSE</h1>
-          <div class="container signin-container" style="margin-top: 30px; margin: auto;">
-          <div class="card signin-card">
+          $id=$_GET['id'];
+          $result=pg_prepare ($db_connection,"my_query2","SELECT * FROM kurs");//prepared mysqli_stm
+          $result=pg_execute($db_connection,"my_query2",array());
+          $ro = pg_fetch_object($result);
+          $rows = pg_num_rows($result);
+          $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
+          $row=pg_fetch_row($result);
+          echo '<h4 style="text-align: center;"><br><br>'.$row[1].'</h4>';
+          ?>
+          </section>
 
-          <form  class="create" action="create.php" method="POST" style="max-width:1000px; margin: auto;">
-            <div>
-                <input type="text" class="form-control" name="naslov" placeholder="WRITE COURSE HEADING..." required><br>
-            </div>
+        <!--------------------footer------------------------------>
 
-            <div>
-              <label for="course">Choose a categry of course:</label>
-              <select name="course" style="padding:7px;width:1000px;margin: auto;">
-                <option value="3">Computer Basics</option>
-                <option value="2">Internet Basics</option>
-                <option value="1">Social Media Basics</option>
-              </select>
-              <br><br>
-            </div>
-
-            <p style="margin-bottom: 7px;">Upload a image:</p>
-            <div class="file">
-              <textarea id="mytextarea" name="fileToUpload1">Upload image: </textarea><br>
-            </div><br>
-            <p style="margin-bottom: 7px;">Write a brife description:</p>
-            <textarea id="mytextarea" name="smallDesc">Write...</textarea><br>
-            <div>
-            </div><br>
-            <p style="margin-bottom: 7px;">Write a description:</p>
-            <textarea id="mytextarea" name="description">Write...</textarea><br>
-            <div>
-              <button  name="signin" class="buttonSignUp" type="submit" style="  margin-left: 40%;">SUBMIT</a>
-            </div><br><br>
-
-          </form>
-        </div>
-      </div>
-
-        </body>
-       </section>
         <section id="footer">
             <img class="footer-img" src="images/Untitled2.png">
 
@@ -223,6 +181,8 @@
             <p class="copyright">All copyrights reserved to New Horizon ©<?php echo date("Y");?></p>
 
         </section>
+
+        <!--------------------scrool----------------------------->
 
 
     </body>

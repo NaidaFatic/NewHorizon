@@ -20,43 +20,87 @@
 
         <!--------------------------Navbar------------------------->
 
-         <section id="nav-bar">
+        <section id="nav-bar">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="Index.html" name="logout"><img src="images/logotip.png"></a>
-
-                <a class="navbar-home" href="must.php?logout='1'">LOG OUT</a>
+                <a class="navbar-brand" href="Index.html"><img src="images/logotip.png"></a>
+                <a class="navbar-home" href="must.php?logout='1'" name="logout">LOG OUT</a>
                 <div class="Welcome">
-                   <?php session_start(); $name= $_SESSION['name']; echo "&nbsp;&nbsp;&nbsp; WELCOME   $name"; ?>
+                   <?php session_start(); $name= $_SESSION['name']; echo "&nbsp;&nbsp;&nbsp; WELCOME   $name "; ?>
                 </div>
-
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
+
                 <div class="collapse navbar-collapse" id="navbarNav">
+
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown">
+                      <li><a class="nav-link dropdown- main" href="editor.php">CREATE COURSE</a></li>
+                          <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle main" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Computer Basics
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-
                                 <a class="dropdown-item sub" href="basicfunctions1.php">Basic functions</a>
-                                <a class="dropdown-item sub" href="basicfunctions2.php">Start Menu</a>
+                                <a class="dropdown-item sub" href="basicfunctions2.php">Start menu</a>
                                 <a class="dropdown-item sub" href="#">Working with files and folders</a>
                                 <a class="dropdown-item sub" href="#">Installing and uninstalling programs</a>
-                            </div>
+                                <?php
+                                $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
+                                $id=85;
+                                $result=pg_prepare ($db_connection,"my_query11","SELECT * FROM kurs");//prepared mysqli_stm
+                                $result=pg_execute($db_connection,"my_query11",array());
+                                $ro = pg_fetch_object($result);
+                                $rows = pg_num_rows($result);
+                                for($i = 1; $i <=$rows; $i++){
+                                  $id=$id+1;
+                                  $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
+
+                                  while ($row = pg_fetch_row($result)) {
+                                  if($row[5]==3)
+                                  {
+
+                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
+
+                                  }}
+
+                                  $id=$id+1;
+                                }
+
+                                ?>
+                              </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle main" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Internet Basics
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
                                 <a class="dropdown-item sub" href="howtogooninternet.php">How to go on the internet</a>
                                 <a class="dropdown-item sub" href="searchingoninternet.php">Searching on internet</a>
                                 <a class="dropdown-item sub" href="#">Creating an account</a>
                                 <a class="dropdown-item sub" href="#">Creating email and email basics</a>
+                                <?php
+                                $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
+                                $id=85;
+                                $result=pg_prepare ($db_connection,"my_query12","SELECT * FROM kurs");//prepared mysqli_stm
+                                $result=pg_execute($db_connection,"my_query12",array());
+                                $ro = pg_fetch_object($result);
+                                $rows = pg_num_rows($result);
+                                for($i = 1; $i <=$rows; $i++){
+                                  $id=$id+1;
+                                  $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
+
+                                  while ($row = pg_fetch_row($result)) {
+                                  if($row[5]==2)
+                                  {
+
+                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
+
+                                  }}
+
+                                  $id=$id+1;
+                                }
+
+                                ?>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -68,6 +112,30 @@
                                 <a class="dropdown-item sub" href="#">Ebay</a>
                                 <a class="dropdown-item sub" href="#">Facebook</a>
                                 <a class="dropdown-item sub" href="#">Youtube</a>
+                                <?php
+                                $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
+                                $id=85;
+                                $result=pg_prepare ($db_connection,"my_query13","SELECT * FROM kurs");//prepared mysqli_stm
+                                $result=pg_execute($db_connection,"my_query13",array());
+                                $ro = pg_fetch_object($result);
+                                $rows = pg_num_rows($result);
+                                for($i = 1; $i <=$rows; $i++){
+                                  $id=$id+1;
+                                  $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
+
+                                  while ($row = pg_fetch_row($result)) {
+                                  if($row[5]==1)
+                                  {
+
+                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
+
+
+                                  }}
+
+                                  $id=$id+1;
+                                }
+
+                                ?>
                             </div>
                         </li>
                     </ul>
