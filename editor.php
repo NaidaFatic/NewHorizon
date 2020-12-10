@@ -36,7 +36,7 @@
         <section id="nav-bar">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="Index.html"><img src="images/logotip.png"></a>
-                <a class="navbar-home" href="must.php?logout='1'" name="logout">LOG OUT</a>
+                <a class="navbar-home" href="must.php" name="logout">LOG OUT</a>
                 <div class="Welcome">
                    <?php session_start(); $name= $_SESSION['name']; echo "&nbsp;&nbsp;&nbsp; WELCOME   $name"; ?>
                 </div>
@@ -59,7 +59,7 @@
                                 <a class="dropdown-item sub" href="#">Installing and uninstalling programs</a>
                                 <?php
                                 $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
-                                $id=85;
+                                $id=137;
                                 $result=pg_prepare ($db_connection,"my_query11","SELECT * FROM kurs");//prepared mysqli_stm
                                 $result=pg_execute($db_connection,"my_query11",array());
                                 $ro = pg_fetch_object($result);
@@ -93,7 +93,7 @@
                                 <a class="dropdown-item sub" href="#">Creating email and email basics</a>
                                 <?php
                                 $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
-                                $id=85;
+                                $id=137;
                                 $result=pg_prepare ($db_connection,"my_query12","SELECT * FROM kurs");//prepared mysqli_stm
                                 $result=pg_execute($db_connection,"my_query12",array());
                                 $ro = pg_fetch_object($result);
@@ -128,7 +128,7 @@
                                 <a class="dropdown-item sub" href="#">Youtube</a>
                                 <?php
                                 $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
-                                $id=85;
+                                $id=137;
                                 $result=pg_prepare ($db_connection,"my_query13","SELECT * FROM kurs");//prepared mysqli_stm
                                 $result=pg_execute($db_connection,"my_query13",array());
                                 $ro = pg_fetch_object($result);
@@ -164,7 +164,7 @@
           <div class="container signin-container" style="margin-top: 30px; margin: auto;">
           <div class="card signin-card">
 
-          <form  class="create" action="create.php" method="POST" style="max-width:1000px; margin: auto;">
+          <form  class="create" action="create.php" method="POST" enctype='multipart/form-data' style="max-width:1000px; margin: auto;">
             <div>
                 <input type="text" class="form-control" name="naslov" placeholder="WRITE COURSE HEADING..." required><br>
             </div>
@@ -181,7 +181,7 @@
 
             <p style="margin-bottom: 7px;">Upload a image:</p>
             <div class="file">
-              <textarea id="mytextarea" name="fileToUpload1">Upload image: </textarea><br>
+              <input type='file' name='file' />
             </div><br>
             <p style="margin-bottom: 7px;">Write a brife description:</p>
             <textarea id="mytextarea" name="smallDesc">Write...</textarea><br>
