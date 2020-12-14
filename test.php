@@ -1,6 +1,6 @@
 <?php
-$db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
-$id=147;
+/*$db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
+$id=149;
 $result=pg_prepare ($db_connection,"my_query15","SELECT * FROM kurs");//prepared mysqli_stm
 $result=pg_execute($db_connection,"my_query15",array());
 $ro = pg_fetch_object($result);
@@ -12,9 +12,9 @@ $j=1;
 
     while ($row = pg_fetch_row($result)) {
       $image = $row[7];
-      $image_src = "upload/".$image;
+
       echo '<div class="col-md-4">';
-      echo '<img src="data:image/jpg;charset=utf8;base64'. $image_src. '/>' ;
+      echo '<img src="data:image/jpg;charset=utf8;base64'. $image. '/>' ;
       echo '<h4 class="ptitle">'.$row[6].'</h4>';
       echo '<p>'.$row[3].'</p>';
       echo '<a href="newcourse.php?id='.$id.'" class="seemore">see more</a></div>';
@@ -23,5 +23,21 @@ $j=1;
     $id=$id+1;
     $j++;
   }
+*/
+
+$db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
+$id=137;
+$result=pg_prepare ($db_connection,"my_query11","SELECT * FROM kurs");//prepared mysqli_stm
+$result=pg_execute($db_connection,"my_query11",array());
+$ro = pg_fetch_object($result);
+$rows = pg_num_rows($result);
+echo $rows;
+for($i = 1; $i <=$rows; $i++){
+
+  echo $id;
+$id=$id+1;
+}
+
+
 
 ?>

@@ -65,7 +65,7 @@
                                 $ro = pg_fetch_object($result);
                                 $rows = pg_num_rows($result);
                                 for($i = 1; $i <=$rows; $i++){
-
+                                  $id=$id+1;
                                   $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
                                   while ($row = pg_fetch_row($result)) {
@@ -99,7 +99,7 @@
                                 $ro = pg_fetch_object($result);
                                 $rows = pg_num_rows($result);
                                 for($i = 1; $i <=$rows; $i++){
-
+                                  $id=$id+1;
                                   $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
                                   while ($row = pg_fetch_row($result)) {
@@ -134,7 +134,7 @@
                                 $ro = pg_fetch_object($result);
                                 $rows = pg_num_rows($result);
                                 for($i = 1; $i <=$rows; $i++){
-                                  
+                                  $id=$id+1;
                                   $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
                                   while ($row = pg_fetch_row($result)) {

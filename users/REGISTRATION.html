@@ -1,14 +1,17 @@
+
 <!doctype html>
 <html>
     <head>
-        <title>Login</title>
-        <link rel="stylesheet" href="../NewHorizon-master/style.css" type="text/css">
+        <title>Registrate</title>
+        <link rel="stylesheet" href="style.css" type="text/css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	   <link rel="shortcut icon" href="images/logotip2.png">
     </head>
+
+
 <!--HEAD-->
     <body class="signin-body">
         <div class="container signin-container">
@@ -18,23 +21,37 @@
                     <div class="card signin-card">
                         <div class="card-body">
                             <img src="images/logobig.png" class="img-fluid signin-img">
-                            <form class="sigin-form" action="login.php" method="POST">
-                                <div class="form-group">
+                            <form class="sigin-form" action="registration.php" method="POST">
 
-                                    <input type="email" class="form-control" name="email" placeholder="Email" required>
+                              <div class="form-group">
+                                  <input type="text" name="name" class="form-control" placeholder="Name" required>
+                              </div>
+                              <div class="form-group">
+                                  <input type="text" name="surname" class="form-control" placeholder="Surname" required>
+                              </div>
+                              <div class="form-group">
+                                  <input type="date" name="date" class="form-control" placeholder="Date of birth" required>
+                              </div>
+                              <div class="form-group">
+                                  <input type="integer" name="number"class="form-control" placeholder="Number" required>
+                              </div>
+                                <div class="form-group">
+                                    <input type="email" name="email" class="form-control" placeholder="Email" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" name="password" placeholder="Password" required>
+                                    <input type="password" name="password" class="form-control" placeholder="Password" required>
                                 </div>
-                                <div>
-                                  <button  name="signin" class="buttonSignUp" type="submit">LOGIN</a>
+                                <div class="form-group">
+                                    <input type="password" name="passwordTest" class="form-control" placeholder="ConfirmPassword" required>
                                 </div>
-                                <br><br><br>
-                                <div class="haveaccount">Don't have an account?
-                                <a href="REGISTRATION.html">SIGN UP</a>
+                                <!--- button here--->
+                                <button type="submit" name="signup" class="buttonSignUp">SIGNUP</button><br><br><br>
+                                <div class="haveaccount">Have an account?
+                                <a href="LOG IN.html">SIGN IN</a>
                                 </div>
                             </form>
-                        </div>
+
+                          </div>
                     </div>
                 </div>
             <div class="col"></div>
@@ -45,10 +62,7 @@
         <!--------------------social networks------------------------------>
         <img class="footer-img" src="images/wave.png">
         <section id="social">
-        </div>
-        <!--------------------social networks------------------------------>
-        <img class="footer-img" src="images/wave.png">
-        <section id="social">
+
             <div class="container">
                 <h2 class="title2">Find us on social networks</h2>
                 <img src="images/Facebook.png">
@@ -80,16 +94,12 @@
                     </div>
                 </div>
                 <hr>
-                <p class="copyright">All copyrights reserved to New Horizon ©2020</p>
+                <p class="copyright">All copyrights reserved to New Horizon &copy2020></p>
 
         </section>
 
         <!--------------------scrool----------------------------->
         </body>
-
-<!--Body-->
-
-</html>
 
 <!--Body-->
 

@@ -2,7 +2,12 @@
 <html>
     <head>
 
-        <title>Searching on internet</title>
+
+        <title>Courses</title>
+
+        <title>Computer courses</title>
+        <title>Computer courses</title>
+
         <meta charset="UTF-8">
         <link rel="stylesheet" href="style.css" type="text/css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -22,7 +27,17 @@
                         <a class="navbar-brand" href="Index.html"><img src="images/logotip.png"></a>
                         <a class="navbar-home" href="must.php?logout='1'" name="logout">LOG OUT</a>
                         <div class="Welcome">
-                           <?php session_start(); $name= $_SESSION['name']; echo "&nbsp;&nbsp;&nbsp; WELCOME   $name"; ?>
+                           <?php
+                           session_start(); $name= $_SESSION['name']; $email=$_SESSION['email'];
+                           $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
+                           $uloga=pg_query ($db_connection,"SELECT uloga FROM korisnici WHERE e_mail='$email'");
+                           $uloga=pg_fetch_result($uloga,0,0);
+                           if($uloga!='t'){
+                             $_SESSION['name']=$name;
+                             header("Location: concept.php");
+                           }
+
+                            echo "&nbsp;&nbsp;&nbsp; WELCOME   $name";  ?>
                         </div>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <i class="fa fa-bars"></i>
@@ -49,7 +64,7 @@
                                         $ro = pg_fetch_object($result);
                                         $rows = pg_num_rows($result);
                                         for($i = 1; $i <=$rows; $i++){
-
+                                          $id=$id+1;
                                           $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
                                           while ($row = pg_fetch_row($result)) {
@@ -71,7 +86,7 @@
                                         Internet Basics
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item sub" href="howtogooninternet.php">How to go on the internet</a>
+                                        <a class="dropdown-item sub" href="courses/howtogooninternet.php">How to go on the internet</a>
                                         <a class="dropdown-item sub" href="searchingoninternet.php">Searching on internet</a>
                                         <a class="dropdown-item sub" href="#">Creating an account</a>
                                         <a class="dropdown-item sub" href="#">Creating email and email basics</a>
@@ -83,14 +98,14 @@
                                         $ro = pg_fetch_object($result);
                                         $rows = pg_num_rows($result);
                                         for($i = 1; $i <=$rows; $i++){
-
+                                          $id=$id+1;
                                           $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
                                           while ($row = pg_fetch_row($result)) {
                                           if($row[5]==2)
                                           {
 
-                                            echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
+                                            echo '<a class="dropdown-item sub" href="courses/newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
 
                                           }}
 
@@ -117,7 +132,7 @@
                                         $ro = pg_fetch_object($result);
                                         $rows = pg_num_rows($result);
                                         for($i = 1; $i <=$rows; $i++){
-
+                                          $id=$id+1;
                                           $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
                                           while ($row = pg_fetch_row($result)) {
@@ -141,37 +156,102 @@
                 </section>
 
         <!-------selection-------------------------------->
-         <section id="tut">
-            <h1>After you open your Web browser</h1>
-            <div class="container">
-                <div class="img0">
-                <img src="images/tutorials2/internetsec.png" >
+
+        <section id="selection">
+          <h1>Computer basics courses:</h1>
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-4">
+                      <a href="basicfunctions1.php"><img class="placeholder" src="images/tutorials/desktop.jpg"></a>
+                      <h4 class="ptitle">Basic functions on Desktop</h4>
+                      <p>What are basic functions on desktop and how we can access them</p>
+                      <a href="basicfunctions1.php" class="seemore">see more</a>
+                  </div>
+                  <div class="col-md-4">
+                      <a href="basicfunctions2.php"><img class="placeholder" src="images/tutorials/start.jpg"></a>
+                      <h4 class="ptitle">Start menu</h4>
+                      <p>What is Start menu, how does it look on different Windows OS and what are the parts of a Start menu</p>
+                      <a href="basicfunctions2.php" class="seemore">see more</a>
+                  </div>
+                   <div class="col-md-4">
+                      <a href="howtogooninternet.php"><img class="placeholder" src="images/tutorials2/int.png"></a>
+                      <h4 class="ptitle"><br>Basics of internet</h4>
+                      <p>How to go on Internet <br>What is Internet</p>
+                      <a href="howtogooninternet.php" class="seemore">see more</a>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-4">
+                      <a href="searchingoninternet.php"><img class="placeholder" src="images/tutorials2/Search-Engine.jpg"></a>
+                      <h4 class="ptitle">Searching on internet</h4>
+                      <p>Ways to search on Web browser.</p>
+                      <a href="searchingoninternet.php" class="seemore">see more</a>
+                  </div>
+                  <?php
+                  $id=137;
+                  $result=pg_prepare ($db_connection,"my_query15","SELECT * FROM kurs");//prepared mysqli_stm
+                  $result=pg_execute($db_connection,"my_query15",array());
+                  $ro = pg_fetch_object($result);
+                  $rows = pg_num_rows($result);
+                  $j=1;
+                    for($i = 1; $i <=2; $i++){
+                      $id=$id+1;
+                      $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
+
+                      while ($row = pg_fetch_row($result)) {
+                        $image = $row[8];
+                        $image_src = "upload/".$image;
+                        echo '<div class="col-md-4">';
+                        echo '<img class="placeholder" src="'.$image_src.'">';
+                        echo '<h4 class="ptitle">'.$row[6].'</h4>';
+                        echo '<p>'.$row[3].'</p>';
+                        echo '<a href="newcourse.php?id='.$id.'" class="seemore">see more</a></div>';
+
+                  }
+                      $id=$id+1;
+                      $j++;
+                    }
+
+                  ?>
+
                 </div>
-                <h4><br>You can search for something on the Web browser by typing on the search bar on top or on the marked boxes. On this picture, it is showed where you can type on Microsoft Edge. If You prefer other Web browsers some are shown below.</h4>
-                <p><br><br></p>
 
-            <h1>Mozilla Firefox</h1>
-                <div class="img0">
-                <img src="images/tutorials2/internetsec2.png" >
-                </div>
-            <h1><br>Google Chrome</h1>
-                <div class="img0">
-                <img src="images/tutorials2/intenretsec1.png" >
-                </div>
-                <p class="tutp"><br>You can type URL (URL is the Web address of the site, like www.facebook.com) or You can simply type Facebook ether way is correct but if you want to go directly to the site you will have to type URL of the site and on the top of the Web browser. You can type the name of the site anywhere but it will not direct you to the site but to the search engine, it will show the result of your search.</p>
+                <?php
+                $id=137;
+                $result=pg_prepare ($db_connection,"my_query16","SELECT * FROM kurs");//prepared mysqli_stm
+                $result=pg_execute($db_connection,"my_query16",array());
+                $ro = pg_fetch_object($result);
+                $rows = pg_num_rows($result);
 
-             <h5 style="float: right"><br><img src="images/tutorials2/facebook.png" style="float:left;width:59%" class="img">
-                 <br><br><br>On this picture it is shown how we can type URL and it will take us directly to site.</h5>
-                <h5 style="float: left"><img src="images/tutorials2/facebook1.png" style="float:right;width:59%;" class="img"> <br><br><br><br>On this picture it is shown how we can type name of site and it will show us the result od our search. In this case the search engine is Bing.</h5>
+                  for($i = 1; $i <=$rows; $i++){
+                    $id=$id+1;
+                    $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
-            <h4><br><br>The searching engine on Firefox and Chrome is Google.</h4>
-                <img src="images/tutorials2/google.png" class="img0">
+                      $j=0;
+                      echo '<div class="row">';
+                      for($n=1;$n<=3;$n++){
 
-             </div>
+                        while ($row = pg_fetch_row($result)) {
+                            $image = $row[8];
+                            $image_src = "upload/".$image;
+                            echo '<div class="col-md-4">';
+                            echo '<img class="placeholder" src="'.$image_src.'">';
+                            echo '<h4 class="ptitle">'.$row[6].'</h4>';
+                            echo '<p>'.$row[3].'</p>';
+                            echo '<a href="newcourse.php?id='.$id.'" class="seemore">see more</a></div>';
+                      }
+                      $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
+                      $id=$id+1;
+                      }
 
-            </section>
+                      echo '</div>';
+                  }
 
-        <!------foother----------------------------------->
+                ?>
+
+            </div>
+        </section>
+
 
 
         <section id="footer">

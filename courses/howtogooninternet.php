@@ -2,7 +2,7 @@
 <html>
     <head>
 
-        <title>Searching on internet</title>
+        <title>Basics of Internet</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="style.css" type="text/css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -43,13 +43,13 @@
                                         <a class="dropdown-item sub" href="#">Installing and uninstalling programs</a>
                                         <?php
                                         $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
-                                        $id=137;
+                                        $id=85;
                                         $result=pg_prepare ($db_connection,"my_query11","SELECT * FROM kurs");//prepared mysqli_stm
                                         $result=pg_execute($db_connection,"my_query11",array());
                                         $ro = pg_fetch_object($result);
                                         $rows = pg_num_rows($result);
                                         for($i = 1; $i <=$rows; $i++){
-
+                                          $id=$id+1;
                                           $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
                                           while ($row = pg_fetch_row($result)) {
@@ -77,13 +77,13 @@
                                         <a class="dropdown-item sub" href="#">Creating email and email basics</a>
                                         <?php
                                         $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
-                                        $id=137;
+                                        $id=85;
                                         $result=pg_prepare ($db_connection,"my_query12","SELECT * FROM kurs");//prepared mysqli_stm
                                         $result=pg_execute($db_connection,"my_query12",array());
                                         $ro = pg_fetch_object($result);
                                         $rows = pg_num_rows($result);
                                         for($i = 1; $i <=$rows; $i++){
-
+                                          $id=$id+1;
                                           $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
                                           while ($row = pg_fetch_row($result)) {
@@ -111,13 +111,13 @@
                                         <a class="dropdown-item sub" href="#">Youtube</a>
                                         <?php
                                         $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
-                                        $id=137;
+                                        $id=85;
                                         $result=pg_prepare ($db_connection,"my_query13","SELECT * FROM kurs");//prepared mysqli_stm
                                         $result=pg_execute($db_connection,"my_query13",array());
                                         $ro = pg_fetch_object($result);
                                         $rows = pg_num_rows($result);
                                         for($i = 1; $i <=$rows; $i++){
-
+                                          $id=$id+1;
                                           $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
                                           while ($row = pg_fetch_row($result)) {
@@ -139,40 +139,37 @@
                         </div>
                     </nav>
                 </section>
+        <!--------------------tutorial------------------------------>
 
-        <!-------selection-------------------------------->
-         <section id="tut">
-            <h1>After you open your Web browser</h1>
+        <section id="tut">
+            <h1>Open your Web browser</h1>
             <div class="container">
-                <div class="img0">
-                <img src="images/tutorials2/internetsec.png" >
-                </div>
-                <h4><br>You can search for something on the Web browser by typing on the search bar on top or on the marked boxes. On this picture, it is showed where you can type on Microsoft Edge. If You prefer other Web browsers some are shown below.</h4>
+                <img src="images/tutorials2/Untitled.png">
+                <h4><br>Click on the start menu or search bar next to it and type your Internet (Web) browser. Click on it to open or click open on the left or you could press the enter button once on your keyboard.</h4>
                 <p><br><br></p>
-
-            <h1>Mozilla Firefox</h1>
-                <div class="img0">
-                <img src="images/tutorials2/internetsec2.png" >
+                <p class="tutp"></p>
+                <div class="row">
+                    <div class="col-md-3">
+                        <img src="images/tutorials2/images.jpg">
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Web browsers</h4>
+                        <p class="tutp"> A web browser (commonly referred to as a browser) is a software application for accessing information on the World Wide Web. A web browser is not the same thing as a search engine, though the two are often confused.  For a user, a search engine is just a website, such as Google Search, Bing, or DuckDuckGo, that stores searchable data about other websites. However, to connect to a website's server and display its web pages, a user must have a web browser installed.<br>On the left side, there are some popular Web browsers. Mozilla Firefox is the most popular browser, then comes Google Chrome, Internet Explorer and so on. When you install an operating system, it comes with a built-in Web browser like Internet Explorer or Microsoft Edge. You can use those browsers or you could install new ones using those.<br></p>
+                    </div>
+                    <div class="col-md-3">
+                        <img src="images/tutorials2/unnamed.png">
+                    </div>
                 </div>
-            <h1><br>Google Chrome</h1>
-                <div class="img0">
-                <img src="images/tutorials2/intenretsec1.png" >
+                <div class="col-mid-3">
+                    <p><br></p>
+                    <h4>When you open your browser it should look like this. <br></h4>
+                <img src="images/tutorials2/edge.png" class="img">
+
                 </div>
-                <p class="tutp"><br>You can type URL (URL is the Web address of the site, like www.facebook.com) or You can simply type Facebook ether way is correct but if you want to go directly to the site you will have to type URL of the site and on the top of the Web browser. You can type the name of the site anywhere but it will not direct you to the site but to the search engine, it will show the result of your search.</p>
+            </div>
+        </section>
 
-             <h5 style="float: right"><br><img src="images/tutorials2/facebook.png" style="float:left;width:59%" class="img">
-                 <br><br><br>On this picture it is shown how we can type URL and it will take us directly to site.</h5>
-                <h5 style="float: left"><img src="images/tutorials2/facebook1.png" style="float:right;width:59%;" class="img"> <br><br><br><br>On this picture it is shown how we can type name of site and it will show us the result od our search. In this case the search engine is Bing.</h5>
-
-            <h4><br><br>The searching engine on Firefox and Chrome is Google.</h4>
-                <img src="images/tutorials2/google.png" class="img0">
-
-             </div>
-
-            </section>
-
-        <!------foother----------------------------------->
-
+        <!--------------------footer------------------------------>
 
         <section id="footer">
             <img class="footer-img" src="images/Untitled2.png">
@@ -198,6 +195,8 @@
             <p class="copyright">All copyrights reserved to New Horizon ©<?php echo date("Y");?></p>
 
         </section>
+
+        <!--------------------scrool----------------------------->
 
 
     </body>

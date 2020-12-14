@@ -6,16 +6,16 @@ $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres 
 $naslov=$_POST['naslov'];
 $smallDesc=$_POST['smallDesc'];
 $description=$_POST['description'];
-$name = $_FILES['file']['file'];
+$name = $_FILES['file']['name'];
 $target_dir = "C:\xampp\htdocs\Project\NewHorizon-master\images";
 $group=$_POST['course'];
 
 $insert=pg_prepare ($db_connection,"my_query",'INSERT INTO kurs(opis, kratakopis, id_grupa_korsa, naziv, slikastring) VALUES($1,$2,$3,$4,$5)');//prepared mysqli_stm
 $insert=pg_execute($db_connection,"my_query",array($description,$smallDesc, $group, $naslov,$name));
-move_uploaded_file($_FILES['file']['file'],$target_dir.$name);
+move_uploaded_file($_FILES['file']['name'],$target_dir.$name);
 
 
-header("location: adminpage.php");
+header("location: admin-pages/adminpage.php");
 
 
 
