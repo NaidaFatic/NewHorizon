@@ -218,7 +218,7 @@
                 </div>
 
                 <?php
-                $id=180;
+                $id=182;
                 $result=pg_prepare ($db_connection,"my_query16","SELECT * FROM kurs");//prepared mysqli_stm
                 $result=pg_execute($db_connection,"my_query16",array());
                 $ro = pg_fetch_object($result);

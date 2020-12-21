@@ -215,17 +215,17 @@
                   </div>
 
                   <?php
-                  $id=180;
+                  $id=182;
                   $result=pg_prepare ($db_connection,"my_query16","SELECT * FROM kurs");//prepared mysqli_stm
                   $result=pg_execute($db_connection,"my_query16",array());
                   $ro = pg_fetch_object($result);
                   $rows = pg_num_rows($result);
 
                     for($i = 1; $i <=$rows; $i++){
-                      $id=$id+1;
+
                       $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
-                        
+
                         echo '<div class="row">';
                         if($rows>=3){
                         for($n=1;$n<=3;$n++){
