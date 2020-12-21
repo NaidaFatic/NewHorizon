@@ -2,9 +2,6 @@
 <html>
     <head>
 
-
-        <title>Computer Basics</title>
-
         <title>Basic functions on Desktop</title>
 
         <meta charset="UTF-8">
@@ -34,7 +31,15 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
 
                     <ul class="navbar-nav ml-auto">
-                      <li><a class="nav-link dropdown- main" href="editor.php">CREATE COURSE</a></li>
+                      <?php
+                     $name= $_SESSION['name']; $email=$_SESSION['email'];
+                      $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
+                      $uloga=pg_query ($db_connection,"SELECT uloga FROM korisnici WHERE e_mail='$email'");
+                      $uloga=pg_fetch_result($uloga,0,0);
+                      if($uloga=='t'){
+                        echo  ' <li><a class="nav-link dropdown- main" href="editor.php">CREATE COURSE</a></li>';
+                      }
+                         ?>
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle main" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Computer Basics
@@ -46,7 +51,7 @@
                                 <a class="dropdown-item sub" href="#">Installing and uninstalling programs</a>
                                 <?php
                                 $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
-                                $id=137;
+                                $id=180;
                                 $result=pg_prepare ($db_connection,"my_query11","SELECT * FROM kurs");//prepared mysqli_stm
                                 $result=pg_execute($db_connection,"my_query11",array());
                                 $ro = pg_fetch_object($result);
@@ -56,10 +61,10 @@
                                   $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
                                   while ($row = pg_fetch_row($result)) {
-                                  if($row[5]==3)
+                                  if($row[3]==3)
                                   {
 
-                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
+                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[4] .  '</a>';
 
                                   }}
 
@@ -80,20 +85,20 @@
                                 <a class="dropdown-item sub" href="#">Creating email and email basics</a>
                                 <?php
                                 $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
-                                $id=137;
+                                $id=180;
                                 $result=pg_prepare ($db_connection,"my_query12","SELECT * FROM kurs");//prepared mysqli_stm
                                 $result=pg_execute($db_connection,"my_query12",array());
                                 $ro = pg_fetch_object($result);
                                 $rows = pg_num_rows($result);
                                 for($i = 1; $i <=$rows; $i++){
-                                  $id=$id+1;
+
                                   $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
                                   while ($row = pg_fetch_row($result)) {
-                                  if($row[5]==2)
+                                  if($row[3]==2)
                                   {
 
-                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
+                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[4] .  '</a>';
 
                                   }}
 
@@ -114,20 +119,20 @@
                                 <a class="dropdown-item sub" href="#">Youtube</a>
                                 <?php
                                 $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
-                                $id=137;
+                                $id=180;
                                 $result=pg_prepare ($db_connection,"my_query13","SELECT * FROM kurs");//prepared mysqli_stm
                                 $result=pg_execute($db_connection,"my_query13",array());
                                 $ro = pg_fetch_object($result);
                                 $rows = pg_num_rows($result);
                                 for($i = 1; $i <=$rows; $i++){
-                                  
+
                                   $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
                                   while ($row = pg_fetch_row($result)) {
-                                  if($row[5]==1)
+                                  if($row[3]==1)
                                   {
 
-                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
+                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[4] .  '</a>';
 
 
                                   }}

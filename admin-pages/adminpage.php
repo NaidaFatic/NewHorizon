@@ -4,17 +4,13 @@
 
 
         <title>Courses</title>
-
-        <title>Computer courses</title>
-        <title>Computer courses</title>
-
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="style.css" type="text/css">
+        <link rel="stylesheet" href="../style.css" type="text/css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="shortcut icon" href="images/logotip2.png">
+        <link rel="shortcut icon" href="../images/logotip2.png">
     </head>
 
     <body>
@@ -24,7 +20,7 @@
 
                 <section id="nav-bar">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="Index.html"><img src="images/logotip.png"></a>
+                        <a class="navbar-brand" href="Index.html"><img src="../images/logotip.png"></a>
                         <a class="navbar-home" href="must.php?logout='1'" name="logout">LOG OUT</a>
                         <div class="Welcome">
                            <?php

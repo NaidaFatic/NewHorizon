@@ -1,43 +1,46 @@
 <?php
-/*$db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
-$id=149;
-$result=pg_prepare ($db_connection,"my_query15","SELECT * FROM kurs");//prepared mysqli_stm
-$result=pg_execute($db_connection,"my_query15",array());
-$ro = pg_fetch_object($result);
-$rows = pg_num_rows($result);
-$j=1;
-  for($i = 1; $i <=2; $i++){
-    $id=$id+1;
-    $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
+$target_dir = "images/";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-    while ($row = pg_fetch_row($result)) {
-      $image = $row[7];
-
-      echo '<div class="col-md-4">';
-      echo '<img src="data:image/jpg;charset=utf8;base64'. $image. '/>' ;
-      echo '<h4 class="ptitle">'.$row[6].'</h4>';
-      echo '<p>'.$row[3].'</p>';
-      echo '<a href="newcourse.php?id='.$id.'" class="seemore">see more</a></div>';
-
-}
-    $id=$id+1;
-    $j++;
+// Check if image file is a actual image or fake image
+if(isset($_POST["submit"])) {
+  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+  if($check !== false) {
+    echo "File is an image - " . $check["mime"] . ".";
+    $uploadOk = 1;
+  } else {
+    echo "File is not an image.";
+    $uploadOk = 0;
   }
-*/
-
-$db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
-$id=137;
-$result=pg_prepare ($db_connection,"my_query11","SELECT * FROM kurs");//prepared mysqli_stm
-$result=pg_execute($db_connection,"my_query11",array());
-$ro = pg_fetch_object($result);
-$rows = pg_num_rows($result);
-echo $rows;
-for($i = 1; $i <=$rows; $i++){
-
-  echo $id;
-$id=$id+1;
 }
 
 
+// Check file size
+if ($_FILES["fileToUpload"]["size"] > 500000) {
+  echo "Sorry, your file is too large.";
+  $uploadOk = 0;
+}
 
+// Allow certain file formats
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+&& $imageFileType != "gif" ) {
+  echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+  $uploadOk = 0;
+}
+
+// Check if $uploadOk is set to 0 by an error
+if ($uploadOk == 0) {
+  echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+} else {
+  if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+    echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
+    $name=htmlspecialchars( basename( $_FILES["fileToUpload"]["name"]));
+   echo  '<img src="images/'.$name.'">';
+  } else {
+    echo "Sorry, there was an error uploading your file.";
+  }
+}
 ?>

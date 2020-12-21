@@ -28,11 +28,11 @@ $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres 
       $_SESSION['success']="Log in successfully!";
       if($uloga=='t'){
         $_SESSION['name']=" ADMIN $name";
-          header("Location: adminpage.php");
+          header("Location: ../admin-pages/adminpage.php");
       }
       else{
         $_SESSION['name']=$name;
-        header("Location: courses/concept.php");
+        header("Location: ../courses/concept.php");
       }
 
     }

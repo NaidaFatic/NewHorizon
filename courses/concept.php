@@ -4,17 +4,13 @@
 
 
         <title>Courses</title>
-
-        <title>Computer courses</title>
-        <title>Computer courses</title>
-
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="style.css" type="text/css">
+        <link rel="stylesheet" href="../style.css" type="text/css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="shortcut icon" href="images/logotip2.png">
+        <link rel="shortcut icon" href="../images/logotip2.png">
     </head>
 
     <body>
@@ -23,10 +19,10 @@
 
         <section id="nav-bar">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="Index.html"><img src="images/logotip.png"></a>
-                <a class="navbar-home" href="must.php?logout='1'" name="logout">LOG OUT</a>
+                <a class="navbar-brand" href="../Index.html"><img src="../images/logotip.png"></a>
+                <a class="navbar-home" href="../user/must.php?logout='1'" name="logout">LOG OUT</a>
                 <div class="Welcome">
-                   <?php session_start(); $name= $_SESSION['name']; echo "&nbsp;&nbsp;&nbsp; WELCOME   $name"; ?>
+                   <?php session_start(); $name= $_SESSION['name']; if($name==NULL) {header("Location:../Index.php");} else {echo "&nbsp;&nbsp;&nbsp; WELCOME   $name";} ?>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
@@ -41,8 +37,8 @@
                                 Computer Basics
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item sub" href="basicfunctions1.php">Basic functions</a>
-                                <a class="dropdown-item sub" href="basicfunctions2.php">Start menu</a>
+                                <a class="dropdown-item sub" href="../courses/basicfunctions1.php">Basic functions</a>
+                                <a class="dropdown-item sub" href="../courses/basicfunctions2.php">Start menu</a>
                                 <a class="dropdown-item sub" href="#">Working with files and folders</a>
                                 <a class="dropdown-item sub" href="#">Installing and uninstalling programs</a>
                                 <?php
@@ -60,7 +56,7 @@
                                   if($row[5]==3)
                                   {
 
-                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
+                                    echo '<a class="dropdown-item sub" href="../courses/newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
 
                                   }}
 
@@ -75,8 +71,8 @@
                                 Internet Basics
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item sub" href="howtogooninternet.php">How to go on the internet</a>
-                                <a class="dropdown-item sub" href="searchingoninternet.php">Searching on internet</a>
+                                <a class="dropdown-item sub" href="../courses/howtogooninternet.php">How to go on the internet</a>
+                                <a class="dropdown-item sub" href="../courses/searchingoninternet.php">Searching on internet</a>
                                 <a class="dropdown-item sub" href="#">Creating an account</a>
                                 <a class="dropdown-item sub" href="#">Creating email and email basics</a>
                                 <?php
@@ -94,7 +90,7 @@
                                   if($row[5]==2)
                                   {
 
-                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
+                                    echo '<a class="dropdown-item sub" href="../courses/newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
 
                                   }}
 
@@ -128,7 +124,7 @@
                                   if($row[5]==1)
                                   {
 
-                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
+                                    echo '<a class="dropdown-item sub" href="../courses/newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
 
 
                                   }}
@@ -151,30 +147,30 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <a href="basicfunctions1.php"><img class="placeholder" src="images/tutorials/desktop.jpg"></a>
+                        <a href="basicfunctions1.php"><img class="placeholder" src="../images/tutorials/desktop.jpg"></a>
                         <h4 class="ptitle">Basic functions on Desktop</h4>
                         <p>What are basic functions on desktop and how we can access them</p>
-                        <a href="basicfunctions1.php" class="seemore">see more</a>
+                        <a href="../courses/basicfunctions1.php" class="seemore">see more</a>
                     </div>
                     <div class="col-md-4">
-                        <a href="basicfunctions2.php"><img class="placeholder" src="images/tutorials/start.jpg"></a>
+                        <a href="../courses/basicfunctions2.php"><img class="placeholder" src="../images/tutorials/start.jpg"></a>
                         <h4 class="ptitle">Start menu</h4>
                         <p>What is Start menu, how does it look on different Windows OS and what are the parts of a Start menu</p>
-                        <a href="basicfunctions2.php" class="seemore">see more</a>
+                        <a href="../courses/basicfunctions2.php" class="seemore">see more</a>
                     </div>
                      <div class="col-md-4">
-                        <a href="howtogooninternet.php"><img class="placeholder" src="images/tutorials2/int.png"></a>
+                        <a href="../courses/howtogooninternet.php"><img class="placeholder" src="../images/tutorials2/int.png"></a>
                         <h4 class="ptitle"><br>Basics of internet</h4>
                         <p>How to go on Internet <br>What is Internet</p>
-                        <a href="howtogooninternet.php" class="seemore">see more</a>
+                        <a href="../courses/howtogooninternet.php" class="seemore">see more</a>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <a href="searchingoninternet.php"><img class="placeholder" src="images/tutorials2/Search-Engine.jpg"></a>
+                        <a href="../courses/searchingoninternet.php"><img class="placeholder" src="../images/tutorials2/Search-Engine.jpg"></a>
                         <h4 class="ptitle">Searching on internet</h4>
                         <p>Ways to search on Web browser.</p>
-                        <a href="searchingoninternet.php" class="seemore">see more</a>
+                        <a href="../courses/searchingoninternet.php" class="seemore">see more</a>
                     </div>
                     <?php
                     $id=137;
@@ -194,7 +190,7 @@
                           echo '<img class="placeholder" src="'.$image_src.'">';
                           echo '<h4 class="ptitle">'.$row[6].'</h4>';
                           echo '<p>'.$row[3].'</p>';
-                          echo '<a href="newcourse.php?id='.$id.'" class="seemore">see more</a></div>';
+                          echo '<a href="../courses/newcourse.php?id='.$id.'" class="seemore">see more</a></div>';
 
                     }
                         $id=$id+1;
@@ -227,7 +223,7 @@
                               echo '<img class="placeholder" src="'.$image_src.'">';
                               echo '<h4 class="ptitle">'.$row[6].'</h4>';
                               echo '<p>'.$row[3].'</p>';
-                              echo '<a href="newcourse.php?id='.$id.'" class="seemore">see more</a></div>';
+                              echo '<a href="../courses/newcourse.php?id='.$id.'" class="seemore">see more</a></div>';
                         }
                         $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
                         $id=$id+1;
@@ -244,11 +240,11 @@
 
 
         <section id="footer">
-            <img class="footer-img" src="images/Untitled2.png">
+            <img class="footer-img" src="../images/Untitled2.png">
 
             <div class="row">
                 <div class="col-md-4">
-                    <img class="img-fluid" src="images/logomain.png">
+                    <img class="img-fluid" src="../images/logomain.png">
 
                 </div>
                 <div class="col-md-4 con">

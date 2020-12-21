@@ -26,7 +26,7 @@
                 <a class="navbar-brand" href="Index.html"><img src="images/logotip.png"></a>
                 <a class="navbar-home" href="must.php?logout='1'" name="logout">LOG OUT</a>
                 <div class="Welcome">
-                   <?php session_start(); $name= $_SESSION['name']; echo "&nbsp;&nbsp;&nbsp; WELCOME   $name"; ?>
+                   <?php session_start(); $name= $_SESSION['name']; if($name==NULL) {header("Location: Index.php");} else {echo "&nbsp;&nbsp;&nbsp; WELCOME   $name";} ?>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
@@ -35,7 +35,15 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
 
                     <ul class="navbar-nav ml-auto">
-
+                      <?php
+                     $name= $_SESSION['name']; $email=$_SESSION['email'];
+                      $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
+                      $uloga=pg_query ($db_connection,"SELECT uloga FROM korisnici WHERE e_mail='$email'");
+                      $uloga=pg_fetch_result($uloga,0,0);
+                      if($uloga=='t'){
+                        echo  ' <li><a class="nav-link dropdown- main" href="editor.php">CREATE COURSE</a></li>';
+                      }
+                         ?>
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle main" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Computer Basics
@@ -47,7 +55,7 @@
                                 <a class="dropdown-item sub" href="#">Installing and uninstalling programs</a>
                                 <?php
                                 $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
-                                $id=137;
+                                $id=180;
                                 $result=pg_prepare ($db_connection,"my_query11","SELECT * FROM kurs");//prepared mysqli_stm
                                 $result=pg_execute($db_connection,"my_query11",array());
                                 $ro = pg_fetch_object($result);
@@ -57,10 +65,11 @@
                                   $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
                                   while ($row = pg_fetch_row($result)) {
-                                  if($row[5]==3)
+                                  if($row[3]==3)
                                   {
 
-                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
+                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[4] .  '</a>';
+
 
                                   }}
 
@@ -81,7 +90,7 @@
                                 <a class="dropdown-item sub" href="#">Creating email and email basics</a>
                                 <?php
                                 $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
-                                $id=137;
+                                $id=180;
                                 $result=pg_prepare ($db_connection,"my_query12","SELECT * FROM kurs");//prepared mysqli_stm
                                 $result=pg_execute($db_connection,"my_query12",array());
                                 $ro = pg_fetch_object($result);
@@ -91,10 +100,11 @@
                                   $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
                                   while ($row = pg_fetch_row($result)) {
-                                  if($row[5]==2)
+                                  if($row[3]==2)
                                   {
 
-                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
+                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[4] .  '</a>';
+
 
                                   }}
 
@@ -115,7 +125,7 @@
                                 <a class="dropdown-item sub" href="#">Youtube</a>
                                 <?php
                                 $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
-                                $id=137;
+                                $id=180;
                                 $result=pg_prepare ($db_connection,"my_query13","SELECT * FROM kurs");//prepared mysqli_stm
                                 $result=pg_execute($db_connection,"my_query13",array());
                                 $ro = pg_fetch_object($result);
@@ -125,10 +135,10 @@
                                   $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
                                   while ($row = pg_fetch_row($result)) {
-                                  if($row[5]==1)
+                                  if($row[3]==1)
                                   {
 
-                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
+                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[4] .  '</a>';
 
 
                                   }}
@@ -177,23 +187,22 @@
                         <a href="searchingoninternet.php" class="seemore">see more</a>
                     </div>
                     <?php
-                    $id=137;
+                    $id=180;
                     $result=pg_prepare ($db_connection,"my_query15","SELECT * FROM kurs");//prepared mysqli_stm
                     $result=pg_execute($db_connection,"my_query15",array());
                     $ro = pg_fetch_object($result);
                     $rows = pg_num_rows($result);
                     $j=1;
                       for($i = 1; $i <=2; $i++){
-                        
+
                         $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
                         while ($row = pg_fetch_row($result)) {
-                          $image = $row[8];
-                          $image_src = "upload/".$image;
+                          $image = $row[5];
                           echo '<div class="col-md-4">';
-                          echo '<img class="placeholder" src="'.$image_src.'">';
-                          echo '<h4 class="ptitle">'.$row[6].'</h4>';
-                          echo '<p>'.$row[3].'</p>';
+                          echo '<img class="placeholder" src="images/'.$image.'">';
+                          echo '<h4 class="ptitle">'.$row[4].'</h4>';
+                          echo '<p>'.$row[2].'</p>';
                           echo '<a href="newcourse.php?id='.$id.'" class="seemore">see more</a></div>';
 
                     }
@@ -206,7 +215,7 @@
                   </div>
 
                   <?php
-                  $id=137;
+                  $id=180;
                   $result=pg_prepare ($db_connection,"my_query16","SELECT * FROM kurs");//prepared mysqli_stm
                   $result=pg_execute($db_connection,"my_query16",array());
                   $ro = pg_fetch_object($result);
@@ -216,23 +225,24 @@
                       $id=$id+1;
                       $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
-                        $j=0;
+                        
                         echo '<div class="row">';
+                        if($rows>=3){
                         for($n=1;$n<=3;$n++){
 
                           while ($row = pg_fetch_row($result)) {
-                              $image = $row[8];
-                              $image_src = "upload/".$image;
+                              $image = $row[5];
                               echo '<div class="col-md-4">';
-                              echo '<img class="placeholder" src="'.$image_src.'">';
-                              echo '<h4 class="ptitle">'.$row[6].'</h4>';
-                              echo '<p>'.$row[3].'</p>';
+                              echo '<img class="placeholder" src="images/'.$image.'">';
+                              echo '<h4 class="ptitle">'.$row[4].'</h4>';
+                              echo '<p>'.$row[2].'</p>';
                               echo '<a href="newcourse.php?id='.$id.'" class="seemore">see more</a></div>';
                         }
-                        $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
                         $id=$id+1;
-                        }
+                        $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
+                        }
+                      }
                         echo '</div>';
                     }
 
