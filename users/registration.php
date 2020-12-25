@@ -50,6 +50,6 @@ $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres 
     $_SESSION['name']=$name;
     $_SESSION['success']="You are logged in!";
 
-    header("location: concept.php");
+    header("location: ../courses/concept.php");
 
  ?>

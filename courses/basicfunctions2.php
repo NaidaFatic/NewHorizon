@@ -2,17 +2,14 @@
 <html>
     <head>
 
-
-        <title>Computer Basics</title>
-
-        <title>Basic functions on Desktop</title>
+        <title>Start menu</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="style.css" type="text/css">
+        <link rel="stylesheet" href="../style.css" type="text/css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="shortcut icon" href="images/logotip2.png">
+        <link rel="shortcut icon" href="../images/logotip2.png">
     </head>
 
     <body>
@@ -21,8 +18,8 @@
 
         <section id="nav-bar">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="Index.html"><img src="images/logotip.png"></a>
-                <a class="navbar-home" href="must.php?logout='1'" name="logout">LOG OUT</a>
+                <a class="navbar-brand" href="../Index.html"><img src="../images/logotip.png"></a>
+                <a class="navbar-home" href="../users/must.php?logout='1'" name="logout">LOG OUT</a>
                 <div class="Welcome">
                    <?php session_start(); $name= $_SESSION['name']; echo "&nbsp;&nbsp;&nbsp; WELCOME   $name "; ?>
                 </div>
@@ -33,7 +30,15 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
 
                     <ul class="navbar-nav ml-auto">
-                      <li><a class="nav-link dropdown- main" href="editor.php">CREATE COURSE</a></li>
+                      <?php
+                     $name= $_SESSION['name']; $email=$_SESSION['email'];
+                      $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
+                      $uloga=pg_query ($db_connection,"SELECT uloga FROM korisnici WHERE e_mail='$email'");
+                      $uloga=pg_fetch_result($uloga,0,0);
+                      if($uloga=='t'){
+                        echo  ' <li><a class="nav-link dropdown- main" href="../admin-pages/editor.php">CREATE COURSE</a></li>';
+                      }
+                         ?>
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle main" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Computer Basics
@@ -45,20 +50,20 @@
                                 <a class="dropdown-item sub" href="#">Installing and uninstalling programs</a>
                                 <?php
                                 $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
-                                $id=85;
+                                $id=180;
                                 $result=pg_prepare ($db_connection,"my_query11","SELECT * FROM kurs");//prepared mysqli_stm
                                 $result=pg_execute($db_connection,"my_query11",array());
                                 $ro = pg_fetch_object($result);
                                 $rows = pg_num_rows($result);
                                 for($i = 1; $i <=$rows; $i++){
-                                  $id=$id+1;
+
                                   $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
                                   while ($row = pg_fetch_row($result)) {
-                                  if($row[5]==3)
+                                  if($row[3]==3)
                                   {
 
-                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
+                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[4] .  '</a>';
 
                                   }}
 
@@ -79,20 +84,20 @@
                                 <a class="dropdown-item sub" href="#">Creating email and email basics</a>
                                 <?php
                                 $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
-                                $id=85;
+                                $id=180;
                                 $result=pg_prepare ($db_connection,"my_query12","SELECT * FROM kurs");//prepared mysqli_stm
                                 $result=pg_execute($db_connection,"my_query12",array());
                                 $ro = pg_fetch_object($result);
                                 $rows = pg_num_rows($result);
                                 for($i = 1; $i <=$rows; $i++){
-                                  $id=$id+1;
+
                                   $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
                                   while ($row = pg_fetch_row($result)) {
-                                  if($row[5]==2)
+                                  if($row[3]==2)
                                   {
 
-                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
+                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[4] .  '</a>';
 
                                   }}
 
@@ -113,20 +118,20 @@
                                 <a class="dropdown-item sub" href="#">Youtube</a>
                                 <?php
                                 $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
-                                $id=85;
+                                $id=180;
                                 $result=pg_prepare ($db_connection,"my_query13","SELECT * FROM kurs");//prepared mysqli_stm
                                 $result=pg_execute($db_connection,"my_query13",array());
                                 $ro = pg_fetch_object($result);
                                 $rows = pg_num_rows($result);
                                 for($i = 1; $i <=$rows; $i++){
-                                  $id=$id+1;
+
                                   $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
                                   while ($row = pg_fetch_row($result)) {
-                                  if($row[5]==1)
+                                  if($row[3]==1)
                                   {
 
-                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
+                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[4] .  '</a>';
 
 
                                   }}
@@ -146,13 +151,13 @@
         <section id="tut">
             <h1>Start menu</h1>
             <div class="container">
-                <img src="images/tutorials/start.jpg">
+                <img src="../images/tutorials/start.jpg">
                 <h4>What is Start menu?</h4>
                 <p class="tutp">The Microsoft Windows Start menu is the primary location in Windows to locate your installed programs and find any files or folders. By default, the Start menu is accessed by clicking Start, which has the Windows logo on it and is located in the bottom-left corner of the Windows desktop screen.
                     On different windows operating systems you have different button layout(as showed on picture).</p>
                 <div class="row">
                     <div class="col-md-3">
-                        <img src="images/tutorials/start2.jpg">
+                        <img src="../images/tutorials/start2.jpg">
                     </div>
                     <div class="col-md-6">
                         <h4>Windows xp and Windows 7 Start menu</h4>
@@ -163,13 +168,13 @@
                             The right pane shows each of the more commonly accessed sections of the computer, such as your Computer, Control Panel, Documents, Music, and Pictures.</p>
                     </div>
                     <div class="col-md-3">
-                        <img src="images/tutorials/win7start.jpg">
+                        <img src="../images/tutorials/win7start.jpg">
                     </div>
                 </div>
                 <h4>Windows 10 Start menu</h4>
                 <div class="row">
                     <div class="col-md-3">
-                        <img src="images/tutorials/win10start.jpg"
+                        <img src="../images/tutorials/win10start.jpg"
                              >
                     </div>
                     <div class="col-md-9">
@@ -182,11 +187,11 @@
         <!--------------------footer------------------------------>
 
         <section id="footer">
-            <img class="footer-img" src="images/Untitled2.png">
+            <img class="footer-img" src="../images/Untitled2.png">
 
             <div class="row">
                 <div class="col-md-4">
-                    <img class="img-fluid" src="images/logomain.png">
+                    <img class="img-fluid" src="../images/logomain.png">
 
                 </div>
                 <div class="col-md-4 con">

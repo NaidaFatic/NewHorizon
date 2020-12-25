@@ -43,8 +43,8 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                                <a class="dropdown-item sub" href="LOG IN.html">SIGN IN</a>
-                                <a class="dropdown-item sub" href="REGISTRATION.html">SIGN UP</a>
+                                <a class="dropdown-item sub" href="users/LOG IN.html">SIGN IN</a>
+                                <a class="dropdown-item sub" href="users/REGISTRATION.html">SIGN UP</a>
                             </div>
                         </li>
                     </ul>
@@ -97,7 +97,7 @@
                         <p>We have best and most efficient staff dedicated just for you. Our staff is here for you 24 hours, 7 days in a week. Ask then anything you need to know and also give some tips for improvement of our platform.</p>
                     </div>
                 </div>
-                <a href="LOG%20IN.html">
+                <a href="users/REGISTRATION.html">
                 <button class="btn btn-primary">JOIN US</button>
                 </a>
             </div>

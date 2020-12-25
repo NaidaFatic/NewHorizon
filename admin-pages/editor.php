@@ -5,12 +5,12 @@
 
         <title>Courses</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="style.css" type="text/css">
+        <link rel="stylesheet" href="../style.css" type="text/css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="shortcut icon" href="images/logotip2.png">
+        <link rel="shortcut icon" href="../images/logotip2.png">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://cdn.tiny.cloud/1/9bfmbnpzkgkaiedqh73xbydrzqpalxno3pkoj1gay6fpz49x/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -35,8 +35,8 @@
 
         <section id="nav-bar">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="Index.html"><img src="images/logotip.png"></a>
-                <a class="navbar-home" href="must.php" name="logout">LOG OUT</a>
+                <a class="navbar-brand" href="../Index.html"><img src="../images/logotip.png"></a>
+                <a class="navbar-home" href="../users/must.php" name="logout">LOG OUT</a>
                 <div class="Welcome">
                    <?php session_start(); $name= $_SESSION['name']; echo "&nbsp;&nbsp;&nbsp; WELCOME   $name"; ?>
                 </div>
@@ -53,26 +53,27 @@
                                 Computer Basics
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item sub" href="basicfunctions1.php">Basic functions</a>
-                                <a class="dropdown-item sub" href="basicfunctions2.php">Start menu</a>
+                                <a class="dropdown-item sub" href="../courses/basicfunctions1.php">Basic functions</a>
+                                <a class="dropdown-item sub" href="../courses/basicfunctions2.php">Start menu</a>
                                 <a class="dropdown-item sub" href="#">Working with files and folders</a>
                                 <a class="dropdown-item sub" href="#">Installing and uninstalling programs</a>
                                 <?php
                                 $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
-                                $id=137;
+                                $id=180;
                                 $result=pg_prepare ($db_connection,"my_query11","SELECT * FROM kurs");//prepared mysqli_stm
                                 $result=pg_execute($db_connection,"my_query11",array());
                                 $ro = pg_fetch_object($result);
                                 $rows = pg_num_rows($result);
                                 for($i = 1; $i <=$rows; $i++){
-                                  $id=$id+1;
+
                                   $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
                                   while ($row = pg_fetch_row($result)) {
-                                  if($row[5]==3)
+                                  if($row[3]==3)
                                   {
 
-                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
+                                    echo '<a class="dropdown-item sub" href="../courses/newcourse.php?id='.$id.'">' . $row[4] .  '</a>';
+
 
                                   }}
 
@@ -87,26 +88,26 @@
                                 Internet Basics
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item sub" href="howtogooninternet.php">How to go on the internet</a>
-                                <a class="dropdown-item sub" href="searchingoninternet.php">Searching on internet</a>
+                                <a class="dropdown-item sub" href="../courses/howtogooninternet.php">How to go on the internet</a>
+                                <a class="dropdown-item sub" href="../courses/searchingoninternet.php">Searching on internet</a>
                                 <a class="dropdown-item sub" href="#">Creating an account</a>
                                 <a class="dropdown-item sub" href="#">Creating email and email basics</a>
                                 <?php
                                 $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
-                                $id=137;
+                                $id=180;
                                 $result=pg_prepare ($db_connection,"my_query12","SELECT * FROM kurs");//prepared mysqli_stm
                                 $result=pg_execute($db_connection,"my_query12",array());
                                 $ro = pg_fetch_object($result);
                                 $rows = pg_num_rows($result);
                                 for($i = 1; $i <=$rows; $i++){
-                                  $id=$id+1;
+
                                   $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
                                   while ($row = pg_fetch_row($result)) {
-                                  if($row[5]==2)
+                                  if($row[3]==2)
                                   {
 
-                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
+                                    echo '<a class="dropdown-item sub" href="../courses/newcourse.php?id='.$id.'">' . $row[4] .  '</a>';
 
 
                                   }}
@@ -128,20 +129,20 @@
                                 <a class="dropdown-item sub" href="#">Youtube</a>
                                 <?php
                                 $db_connection = pg_connect("host=localhost dbname=NewHorizonTest user=postgres password=123");
-                                $id=137;
+                                $id=180;
                                 $result=pg_prepare ($db_connection,"my_query13","SELECT * FROM kurs");//prepared mysqli_stm
                                 $result=pg_execute($db_connection,"my_query13",array());
                                 $ro = pg_fetch_object($result);
                                 $rows = pg_num_rows($result);
                                 for($i = 1; $i <=$rows; $i++){
-                                  $id=$id+1;
+
                                   $result=pg_query ($db_connection,"SELECT * FROM kurs WHERE id='$id'");
 
                                   while ($row = pg_fetch_row($result)) {
-                                  if($row[5]==1)
+                                  if($row[3]==1)
                                   {
 
-                                    echo '<a class="dropdown-item sub" href="newcourse.php?id='.$id.'">' . $row[6] .  '</a>';
+                                    echo '<a class="dropdown-item sub" href="../courses/newcourse.php?id='.$id.'">' . $row[4] .  '</a>';
 
 
                                   }}
@@ -152,6 +153,7 @@
                                 ?>
                             </div>
                         </li>
+
                     </ul>
                 </div>
             </nav>
@@ -164,7 +166,7 @@
           <div class="container signin-container" style="margin-top: 30px; margin: auto;">
           <div class="card signin-card">
 
-          <form  class="create" action="create.php" method="POST" enctype='multipart/form-data' style="max-width:1000px; margin: auto;">
+          <form  class="create" action="../admin-pages/create.php" method="post" enctype='multipart/form-data' style="max-width:1000px; margin: auto;">
             <div>
                 <input type="text" class="form-control" name="naslov" placeholder="WRITE COURSE HEADING..." required><br>
             </div>
@@ -181,7 +183,7 @@
 
             <p style="margin-bottom: 7px;">Upload a image:</p>
             <div class="file">
-              <input type='file' name='file' />
+              <input type="file" name="fileToUpload">
             </div><br>
             <p style="margin-bottom: 7px;">Write a brife description:</p>
             <textarea id="mytextarea" name="smallDesc">Write...</textarea><br>
@@ -200,11 +202,11 @@
         </body>
        </section>
         <section id="footer">
-            <img class="footer-img" src="images/Untitled2.png">
+            <img class="footer-img" src="../images/Untitled2.png">
 
             <div class="row">
                 <div class="col-md-4">
-                    <img class="img-fluid" src="images/logomain.png">
+                    <img class="img-fluid" src="../images/logomain.png">
 
                 </div>
                 <div class="col-md-4 con">
